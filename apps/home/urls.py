@@ -13,6 +13,7 @@ urlpatterns = [
 
     path('botoncito/',views1.botoncito,name="botoncito"),
     path('ingresarEmocion/',views1.entrydiario,name="entrydiario"),
+    path('test',views1.testForm,name="testForm"),
 
     # Matches any html file
     re_path(r'^.*\.*', views.pages, name='pages'),

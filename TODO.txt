@@ -1,9 +1,9 @@
-#TODO;
+#TO-DO;
 '''
 Funciones:
 -Notificaciones
 -Ajustes
--Ingresar emociones
+-Ingresar emociones -> En proceso, lograr q python pueda guardar las respuestas e interpretarlas
 -Diario
 -Guardar frases
 
