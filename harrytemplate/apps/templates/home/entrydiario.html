@@ -1,0 +1,72 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Page Blank {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Diario</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="javascript:">Ingresar entrada:</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Bienvenido de nuevo!</h5>
+                                </div>
+                                <div class="card-block">
+                                    <form>
+                                    <div class="form-group">
+                                        <label for="emotionpicker">¿Cómo te sientes hoy?</label><br>
+
+                                        <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-primary">
+                                        <input type="radio" name="options" id="triste"> Triste</label>
+                                        <label class="btn btn-primary">
+                                        <input type="radio" name="options" id="templado"> Templado</label>
+                                        <label class="btn btn-primary">
+                                        <input type="radio" name="options" id="feliz"><img src="static/icon/feliz.png"> Feliz</label>
+                                        <label class="btn btn-primary">
+                                        <input type="radio" name="options" id="enojado"> Enojado</label>
+                                        </div><br>
+
+                                        <br><input type="text" class="form-control" id="emotionpicker" autocomplete="off" placeholder="Si quieres, puedes describir tus emociones aquí..."><br>
+
+                                        <button type="submit" name="listo" class="btn btn-success"> Listo</button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ Main Content ] end -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

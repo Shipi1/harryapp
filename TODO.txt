@@ -9,7 +9,3 @@ Funciones:
 
 y después dejarlo bonito con UI y todo :)
 '''
-import django
-
-
-#def ingresarEmociones():
