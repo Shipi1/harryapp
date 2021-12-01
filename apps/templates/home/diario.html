@@ -19,7 +19,7 @@
                             </div>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
-                                <li class="breadcrumb-item"><a href="javascript:">Ingresar entrada:</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:">Entradas del diario</a></li>
                             </ul>
                         </div>
                     </div>
@@ -33,17 +33,10 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Bienvenido de nuevo!</h5>
+                                    <h5>Diario</h5>
                                 </div>
                                 <div class="card-block">
-
-                                    <form action="" method="POST"> 
-                                        {% csrf_token %}
-
-                                        <table> {{ form.as_p }} </table>
-                                        <button type="submit" name="listo" class="btn btn-success"> Listo</button>
-
-                                    </form>
+                                    <p>Aquí iran las anteriores entradas del diario</p>
 
                                 </div>
                             </div>

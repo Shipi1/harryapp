@@ -3,11 +3,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render
-from django import forms
-
-class emocionesForm(forms.Form):
-    #emocion = forms.
-    descripcion = forms.CharField(label='descripcion', max_length=220)
+from . import forms
 
 def botoncito(request): #"Chuleta" (como dice la Sofi) de llamar una función.
 
@@ -21,37 +17,48 @@ def botoncito(request): #"Chuleta" (como dice la Sofi) de llamar una función.
     context['segment'] = "botontest"
     return HttpResponse(t.render(context))
 
-def entrydiario(request): #Entrada de diario de emociones.
+def samplepage(request):
+    t=loader.get_template('home/page-blank.html')
+    c = {}
+    c['segment'] = 'sample'
+    return HttpResponse(t.render(c))
 
-    t = loader.get_template('home/entrydiario.html')
-    context = {}
-    context['segment'] = "entrydiario"
-    return HttpResponse(t.render(context))
+#def entrydiario(request): #Entrada de diario de emociones. <- No borrar, tal vez se use como referencia.
 
-'''def testForm(request):
+#    t = loader.get_template('home/entrydiario.html')
+#   context = {}
+#    context['segment'] = "entrydiario"
+#   return HttpResponse(t.render(context))
 
-    if request.method == 'POST':
-        form = request.post
+def entrydiario(request): #Entrada de diario de emociones, 
 
-        arch = open("test.txt","w")
-        arch.write(form)
-        arch.close()
-    return None'''
+    if request.method == "POST":
+        formulario = forms.EmocionesForm(request.POST)
+        if formulario.is_valid(): #De aquí se guarda e interpreta la información de las emociones.
+
+            print(formulario.cleaned_data['emocion'])
+            print(formulario.cleaned_data['descripcion'])
+
+            return render(request, "home/botontest.html")
+    else:
+        formulario = forms.EmocionesForm()
+
+    return render(request, "home/entrydiario.html", {"form":formulario})
 
 def testForm(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        form = emocionesForm(request.POST)
+        form = forms.emocionesForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
-            return HttpResponseRedirect('/thanks/')
+            return HttpResponseRedirect('/botoncito/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = emocionesForm()
+        form = forms.emocionesForm()
 
     return render(request, 'botontest.html', {'form': form})
