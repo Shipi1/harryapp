@@ -36,8 +36,42 @@
                                     <h5>Diario</h5>
                                 </div>
                                 <div class="card-block">
-                                    <p>Aquí iran las anteriores entradas del diario</p>
+                                    
+                                    {% if entradas %}
+                                    {% for entry in entradas %}
+                                        
+                                        <div class="card">
+                                            {% if entry.emocion == "Enojado" %}
+                                            <div class="card-header text-white" style="background-color: #C91836;">Entrada del día {{ entry.fecha }}</div>
+                                            {% elif entry.emocion == "Triste" %}
+                                            <div class="card-header text-white" style="background-color: #22A2D9;">Entrada del día {{ entry.fecha }}</div>
+                                            {% elif entry.emocion == "Feliz" %}
+                                            <div class="card-header text-white" style="background-color: #22D940;">Entrada del día {{ entry.fecha }}</div>
+                                            {% elif entry.emocion == "Templado" %}
+                                            <div class="card-header text-white" style="background-color: #15D3AD;">Entrada del día {{ entry.fecha }}</div>
+                                            
 
+                                            {% endif %}
+                                            
+                                            <div class="card-body">
+                                                <h5 class="card-title">Ese día estuviste: {{ entry.emocion }}</h5>
+
+                                                {% if entry.descripcion != "" %}
+                                                    <p class="card-text">y escribiste la siguiente descripción: </p>
+                                                    <ul><p class="card-text">{{ entry.descripcion }}</p></ul>
+
+                                                {% elif entry.descripcion == "" %}
+                                                    <p class="card-text">Este día no escribiste descripción</p>
+
+                                                {% endif %}
+                                            </div>
+                                        </div>
+
+                                    {% endfor %}
+                                    {% else %}
+                                    <p> ¡No has ingresado ninguna emoción todavía! </p>
+                                    {% endif %}
+                                    
                                 </div>
                             </div>
                         </div>

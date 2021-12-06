@@ -43,6 +43,10 @@
                                     {% csrf_token %}
                                     <button type="submit" name="boton2" class="btn btn-outline-success">Ingresar emociones</button>
                                     </form>
+                                    <form action="{% url 'diario' %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" name="boton2" class="btn btn-outline-success">Entradas del diario</button>
+                                    </form>
 
                                 </div>
                             </div>

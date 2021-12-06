@@ -3,7 +3,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render
-from . import forms
+from . import forms, models
 
 def botoncito(request): #"Chuleta" (como dice la Sofi) de llamar una función.
 
@@ -30,7 +30,7 @@ def samplepage(request):
 #    context['segment'] = "entrydiario"
 #   return HttpResponse(t.render(context))
 
-def entrydiario(request): #Entrada de diario de emociones, 
+def entrydiario(request): #Entrada de diario de emociones,
 
     if request.method == "POST":
         formulario = forms.EmocionesForm(request.POST)
@@ -39,11 +39,19 @@ def entrydiario(request): #Entrada de diario de emociones,
             print(formulario.cleaned_data['emocion'])
             print(formulario.cleaned_data['descripcion'])
 
-            return render(request, "home/botontest.html")
+            entrada = models.entradaDiario(emocion=formulario.cleaned_data['emocion'],descripcion=formulario.cleaned_data['descripcion'])
+            entrada.save()
+
+            return render(request, "home/diario.html")
     else:
         formulario = forms.EmocionesForm()
 
     return render(request, "home/entrydiario.html", {"form":formulario})
+
+def diario(request):
+    entradas = models.entradaDiario.objects.all()
+    return render(request, 'home/diario.html', {'entradas':entradas})
+
 
 def testForm(request):
     # if this is a POST request we need to process the form data
