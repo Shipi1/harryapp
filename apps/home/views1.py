@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render
 from . import forms, models
+from random import randint
 
 def botoncito(request): #"Chuleta" (como dice la Sofi) de llamar una función.
 
@@ -30,6 +31,14 @@ def samplepage(request):
 #    context['segment'] = "entrydiario"
 #   return HttpResponse(t.render(context))
 
+def frase(emocion): #Retorna un string con una frase al azar de los archivos.
+    path = "apps/home/frases/"+emocion.lower()+".txt"
+    with open(path,"r") as file:
+        frases = [line.strip() for line in file]
+    return frases[randint(1,len(frases))-1]
+
+
+
 def entrydiario(request): #Entrada de diario de emociones,
 
     if request.method == "POST":
@@ -42,7 +51,9 @@ def entrydiario(request): #Entrada de diario de emociones,
             entrada = models.entradaDiario(emocion=formulario.cleaned_data['emocion'],descripcion=formulario.cleaned_data['descripcion'])
             entrada.save()
 
-            return render(request, "home/diario.html")
+            fraseElegida = frase(formulario.cleaned_data['emocion'])
+
+            return render(request, "home/frases.html", {"frase":fraseElegida})
     else:
         formulario = forms.EmocionesForm()
 
